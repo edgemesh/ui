@@ -1,0 +1,15 @@
+# OSX
+#
+.DS_Store
+
+# node.js
+#
+build/
+node_modules/
+npm-debug.log
+cli/node_modules/
+
+# sublime
+#
+*.sublime-project
+*.sublime-workspace
