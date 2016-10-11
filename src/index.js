@@ -18,6 +18,7 @@ export IceCream from './components/ice-cream/IceCream';
 export Tabs from './components/tabs/Tabs';
 export Tab from './components/tabs/Tab';
 export Autocomplete from './components/autocomplete/Autocomplete';
+export Select from './components/select/Select';
 
 // Utils
 export keyCode from './utils/keyCode';
