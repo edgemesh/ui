@@ -1,5 +1,4 @@
 export Paper from './components/paper/Paper';
-export Dialog from './components/dialog/Dialog';
 export TextField from './components/text-field/TextField';
 export RaisedButton from './components/button/RaisedButton';
 export Icon from './components/icon/Icon';
