@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.2.0"></a>
+# [1.2.0](https://github.com/edgemesh/emui/compare/v1.1.0...v1.2.0) (2016-10-11)
+
+
+### Features
+
+* **select:** added select component ([2d58679](https://github.com/edgemesh/emui/commit/2d58679))
+
+
+
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/edgemesh/emui/compare/v1.0.1...v1.1.0) (2016-09-14)
 
