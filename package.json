@@ -12,7 +12,7 @@
     "release": "standard-version"
   },
   "engines": {
-    "node": ">=4.2.0"
+    "node": ">=5.0.0"
   },
   "author": "Randy Lebeau <randylebeau@gmail.com> (https://github.com/supremetechnpriest)",
   "repository": {
