@@ -1,5 +1,4 @@
 export Paper from './components/paper/Paper';
-export Dialog from './components/dialog/Dialog';
 export TextField from './components/text-field/TextField';
 export RaisedButton from './components/button/RaisedButton';
 export Icon from './components/icon/Icon';
@@ -18,6 +17,7 @@ export IceCream from './components/ice-cream/IceCream';
 export Tabs from './components/tabs/Tabs';
 export Tab from './components/tabs/Tab';
 export Autocomplete from './components/autocomplete/Autocomplete';
+export Select from './components/select/Select';
 
 // Utils
 export keyCode from './utils/keyCode';
