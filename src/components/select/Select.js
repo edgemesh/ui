@@ -6,6 +6,7 @@ import Accordion from '../accordion/Accordion';
 import Icon from '../icon/Icon';
 import Paper from '../paper/Paper';
 import uuid from 'uuid';
+import _ from 'lodash';
 
 
 let id = uuid.v1();
@@ -42,7 +43,7 @@ export default class Select extends Component {
         disabledTextColor: PropTypes.string,
         disabledPlaceholderColor: PropTypes.string,
         disabledBackground: PropTypes.string,
-       
+
         // Custom Style
         style: PropTypes.object,
         placeholderStyle: PropTypes.object,
@@ -99,7 +100,7 @@ export default class Select extends Component {
             })[0];
         }
 
-        if (result) { 
+        if (result) {
             this.setState({
                 currentSelection: result
             })
@@ -107,8 +108,34 @@ export default class Select extends Component {
 
     }
 
+    componentWillReceiveProps(nextProps) {
+        let { options, defaultValue, defaultLabel } = this.props;
+        if ((nextProps.defaultValue !== defaultValue)
+            || (nextProps.defaultLabel !== defaultLabel)
+        ){
+            let currentSelection = options.find(
+                option => option.value === nextProps.defaultValue
+                    || option.label === nextProps.defaultLabel
+            );
+            console.log(nextProps.defaultValue, nextProps.defaultLabel)
+            let selectionIndex = options.findIndex(
+                option => option.value === nextProps.defaultValue
+                    || option.label === nextProps.defaultLabel
+            );
+
+            if (!currentSelection) {
+                currentSelection = nextProps.options[0]
+            };
+
+            this.setState({
+                currentSelection,
+                selectionIndex
+            })
+        }
+    }
+
 	render() {
-        let { 
+        let {
             placeholder,
             disabled,
             accentColor,
@@ -132,7 +159,7 @@ export default class Select extends Component {
 
         let { currentSelection, isFocused } = this.state;
 
-        let hasValue = Object.keys(currentSelection).length ? true : false; 
+        let hasValue = Object.keys(currentSelection).length ? true : false;
 
         let _textColor = !disabled ? textColor : disabledTextColor;
         let _placeholderColor = !disabled ? placeholderColor : disabledPlaceholderColor;
@@ -140,12 +167,12 @@ export default class Select extends Component {
         let placeholderStyles = {
             color: hasValue ?  _textColor : _placeholderColor,
             fill: hasValue ?  _textColor : _placeholderColor,
-            maxWidth: fullWidth ? undefined : maxWidth, 
+            maxWidth: fullWidth ? undefined : maxWidth,
             minWidth,
         };
 
 		if (isFocused) {
-			floatingLabelColor = !disabled ? accentColor : disabledPlaceholderColor; 
+			floatingLabelColor = !disabled ? accentColor : disabledPlaceholderColor;
 		} else {
 			if (hasValue){
 				floatingLabelColor = !disabled ? textColor : disabledPlaceholderColor;
@@ -164,7 +191,7 @@ export default class Select extends Component {
 
 			<div style={[
 				styles.floatingLabel,
-				{ 
+				{
                     visibility: hasValue ? 'visible' : 'hidden',
 					color: floatingLabelColor,
 					transform: `scale(${labelCoords.scale}) translateX(${labelCoords.x}px) translateY(${labelCoords.y})`,
@@ -187,12 +214,12 @@ export default class Select extends Component {
                 {cursor: !disabled ? 'pointer' : 'not-allowed'},
                 style
             ]}>
-                <Style rules={{		
+                <Style rules={{
 					[`.emui-hover-${id}:hover`]:{
 						color: `${accentColor} !important`,
 						fill: `${accentColor} !important`,
                         backgroundColor: `${hoverBackground} !important`
-                        
+
 					},
                     [`.emui-hover-option-${id}:hover`]:{
 						color: `${accentColor} !important`,
@@ -201,7 +228,7 @@ export default class Select extends Component {
 					},
 				}}/>
 
-                <div 
+                <div
                     tabIndex={0}
                     onFocus={this._handleFocus.bind(this)}
                     onClick={!disabled ? this._handleDropDown.bind(this) : ()=>{}}
@@ -211,7 +238,7 @@ export default class Select extends Component {
                     { floatingLabel ? floatingLabelRender : null }
 
                     <Paper style={styles.placeholderWrapper} innerStyle={[styles.placeholderWrapper, wrapperBackground, disabledStyle]}>
-                        <View 
+                        <View
                             className={!disabled ? `emui-hover-${id}` : ''}
                             style={[
                                 styles.placeholderContainer,
@@ -226,9 +253,9 @@ export default class Select extends Component {
 
                         </View>
                     </Paper>
-                    
-                    <Paper 
-                        depth={2} 
+
+                    <Paper
+                        depth={2}
                         style={[styles.dropdownContainer, this._getAlignment(), dropdownContainerStyle]}>
                         <Accordion ref="dropdown" expandContent={this._renderOptions()} />
                     </Paper>
@@ -262,7 +289,7 @@ export default class Select extends Component {
     }
 
     _handleDropDown() {
-        
+
         this.refs.dropdown.toggleExpandContent();
     }
 
@@ -281,8 +308,14 @@ export default class Select extends Component {
         })
 	}
     _renderOptions() {
-        let { options, optionContainerStyle, maxSelectorHeight } = this.props;
-        let { selectionIndex } = this.state;
+        let {
+            options,
+            optionContainerStyle,
+            maxSelectorHeight,
+            defaultLabel,
+            defaultValue
+        } = this.props;
+        let { selectionIndex, currentSelection } = this.state;
 
         let maxHeight = {
             maxHeight: maxSelectorHeight
@@ -290,7 +323,10 @@ export default class Select extends Component {
 
         let renderedOptions = options.map((option, i)=>{
 
-            if (i === selectionIndex ) return;
+            if (i === selectionIndex
+                || (option.label === defaultLabel && defaultLabel === currentSelection.label)
+                || (option.value === defaultValue && defaultValue === currentSelection.value)
+            ){ return };
 
             return (
                 <li className={`emui-hover-option-${id}`} key={i} onClick={this._handleSelect.bind(this, option, i)} style={styles.option}>
@@ -310,7 +346,7 @@ export default class Select extends Component {
         let { alignSelector } = this.props;
 
         let selectorAlignment = {};
-  
+
         switch (alignSelector) {
             case 'left':
                 selectorAlignment = styles.alignSelectorLeft;
@@ -321,7 +357,7 @@ export default class Select extends Component {
             case 'center':
                 selectorAlignment = styles.alignSelectorCenter;
                 break;
-            
+
             default:
                 selectorAlignment = styles.alignSelectorleft;
         }
