@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { findDOMNode as $ } from 'react-dom';
 import Radium from 'radium';
 import { colors } from '../../utils/colors';
@@ -62,7 +63,7 @@ export default class Autocomplete extends Component {
 	}
 
 	render() {
-		let { 
+		let {
 			placeholder,
 			floatingLabel,
 			accentColor,
@@ -90,9 +91,13 @@ export default class Autocomplete extends Component {
 			hoverColor
 		};
 
+		const selectorTop = selectorPosition === 'top';
+
+
 		return (
 			<div style={styles.container}>
-				<TextField 
+				{selectorTop && <Selector ref="selector" {...selectorProps} options={this.state.visible} open={open} handleSelect={this._handleSelect.bind(this)}/>}
+				<TextField
 					{...this.props}
 					{...textFieldProps}
 					ref="input"
@@ -102,7 +107,9 @@ export default class Autocomplete extends Component {
 					onBlur={this._handleBlur.bind(this)}
 					errorColor={errorColor}
 					zIndex={1002} />
-				<Selector ref="selector" {...selectorProps} options={this.state.visible} open={open} handleSelect={this._handleSelect.bind(this)}/>
+
+					{!selectorTop && <Selector ref="selector" {...selectorProps} options={this.state.visible} open={open} handleSelect={this._handleSelect.bind(this)}/>}
+
 			</div>
 		);
 	}
@@ -116,11 +123,11 @@ export default class Autocomplete extends Component {
 	getSelectedValue () {
 		return this.state.selectedValue;
 	}
-	
+
 	getSelection () {
 		return this.state.selection;
 	}
-	
+
 	getEntryValue () {
 		return this.state.entryValue;
 	}
@@ -139,7 +146,7 @@ export default class Autocomplete extends Component {
 
 	setErrorText(text) {
 		let { input } = this.refs;
-		
+
 		this.clear();
 
 		setTimeout(()=>{
@@ -172,9 +179,9 @@ export default class Autocomplete extends Component {
 
 		let { maxVisible } = this.props;
 
-		// when returnValue is true, return the value of the filtered options, 
+		// when returnValue is true, return the value of the filtered options,
 		// instead of the label.
-		
+
 		let options = {
 			extract: (option)=> { return returnValue ? option.value : option.label }
 		}
@@ -207,7 +214,7 @@ export default class Autocomplete extends Component {
 				visible: options,
 				selection: null,
 				selectedValue: null,
-				open: options.length > 0 
+				open: options.length > 0
 			});
 		} else {
 
@@ -238,9 +245,9 @@ export default class Autocomplete extends Component {
 			selection: null,
 			selectedValue: null,
 			entryValue: value,
-			open: visible.length > 0 
+			open: visible.length > 0
 		});
-		
+
 		if (optionValidate && value != '' && visible.length == 0) {
 			if (input.getErrorText() == '') input.setErrorText('You must select a valid option.');
 		} else if (optionValidate && value != '' && visible.length > 0) {
@@ -255,7 +262,7 @@ export default class Autocomplete extends Component {
 		let { selector, input } = this.refs;
 
 		if (selector.getSelectionIndex() !== null) {
-			
+
 			input.setValue(this.state.visible[selector.getSelectionIndex()].label);
 			if (onSelect) onSelect(this.state.visible[selector.getSelectionIndex()]);
 
@@ -266,9 +273,9 @@ export default class Autocomplete extends Component {
 				open: false
 			});
 		} else {
-			
+
 			if (this.state.visible.length) {
-	
+
 				input.setValue(this.state.visible[0].label);
 				if (onSelect) onSelect(this.state.visible[0]);
 
@@ -284,7 +291,7 @@ export default class Autocomplete extends Component {
 
 	_handleBlur(e) {
 		let {entryValue, visible, selection} = this.state;
-		
+
 		if (entryValue !== '' && visible.length > 0 && !selection) {
 			this._handleSelect();
 		} else {
@@ -300,7 +307,7 @@ export default class Autocomplete extends Component {
 		let { open } = this.state;
 
 		switch(e.keyCode) {
-			case keyCode.UP: 
+			case keyCode.UP:
 				if (open) selector.navUp();
 				break;
 			case keyCode.DOWN:
