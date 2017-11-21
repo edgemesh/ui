@@ -96,11 +96,19 @@ export default class Autocomplete extends Component {
 
 		return (
 			<div style={styles.container}>
-				{selectorTop && <Selector ref="selector" {...selectorProps} options={this.state.visible} open={open} handleSelect={this._handleSelect.bind(this)}/>}
+				{selectorTop && <Selector
+					expandDirection="up"
+					ref="selector"
+					{...selectorProps}
+					options={this.state.visible}
+					open={open}
+					handleSelect={this._handleSelect.bind(this)}
+				/>}
 				<TextField
 					{...this.props}
 					{...textFieldProps}
 					ref="input"
+					floatingLabel={!selectorTop}
 					onKeyDown={this._handleKeyDown.bind(this)}
 					onInput={this._handleInput.bind(this)}
 					onFocus={this._handleFocus.bind(this)}
@@ -108,7 +116,14 @@ export default class Autocomplete extends Component {
 					errorColor={errorColor}
 					zIndex={1002} />
 
-					{!selectorTop && <Selector ref="selector" {...selectorProps} options={this.state.visible} open={open} handleSelect={this._handleSelect.bind(this)}/>}
+					{!selectorTop && <Selector
+						expandDirection="down"
+						ref="selector"
+						{...selectorProps}
+						options={this.state.visible}
+						open={open}
+						handleSelect={this._handleSelect.bind(this)}
+					/>}
 
 			</div>
 		);

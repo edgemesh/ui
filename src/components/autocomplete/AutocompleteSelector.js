@@ -46,10 +46,10 @@ export default class AutocompleteSelector extends Component {
 
 	render() {
 
-		let { options, accent, hoverColor, selectorStyles, selectorItemStyles, maxSelectorHeight } = this.props;
+		let { options, accent, hoverColor, selectorStyles, selectorItemStyles, maxSelectorHeight, expandDirection } = this.props;
 		let { selectionIndex } = this.state;
 
-
+		const isUp = expandDirection === 'up';
 
 		options = options.map((option, i)=>{
 			return(
@@ -65,7 +65,7 @@ export default class AutocompleteSelector extends Component {
 		});
 
 		return (
-			<Paper ref="container" style={[styles.paper, { maxHeight: maxSelectorHeight }]} innerStyle={styles.paperInner} fullWidth zIndex={1001}>
+			<Paper ref="container" style={[styles.paper, { maxHeight: maxSelectorHeight }, isUp && {top: '-100%'}]} innerStyle={styles.paperInner} fullWidth zIndex={1001}>
 				{/* Work around for Radiums bad hover support */}
 				<Style rules={{
 					'.autocomplete-selector-hover-item:hover': {
@@ -75,6 +75,7 @@ export default class AutocompleteSelector extends Component {
 				<Accordion
 					ref="accordion"
 					expandContent={options}
+					expandDirection={expandDirection}
 					expandContentStyle={[styles.selector, selectorStyles]}
 					expandContentContainerStyle={styles.selectorContainer}
 				/>
@@ -115,7 +116,7 @@ export default class AutocompleteSelector extends Component {
 		let { selectionIndex } = this.state;
 
 		if (options.length > 0) {
-			
+
 			let container = $( this.refs.container );
 
 			let label = options[selectionIndex].label;
@@ -128,10 +129,10 @@ export default class AutocompleteSelector extends Component {
 			container.scrollTop = itemTop - containerHeight + itemHeight;
 		}
 	}
-	
+
 	setSelectionIndex(i){
 		this.setState({ selectionIndex: i });
-	}	
+	}
 
 	getSelectionIndex(i){
 		return this.state.selectionIndex;
@@ -162,7 +163,7 @@ const styles = {
 	},
 	paperInner: {
 		zIndex: 1001,
-		backgroundColor: colors.grey50, 
+		backgroundColor: colors.grey50,
 		borderTopLeftRadius: 0,
 		borderTopRightRadius: 0,
 		borderBottomLeftRadius: 4,
