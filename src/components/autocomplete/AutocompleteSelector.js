@@ -65,7 +65,17 @@ export default class AutocompleteSelector extends Component {
 		});
 
 		return (
-			<Paper ref="container" style={[styles.paper, { maxHeight: maxSelectorHeight }, isUp && {top: '-100%'}]} innerStyle={styles.paperInner} fullWidth zIndex={1001}>
+			<Paper
+				ref="container"
+				style={[
+					styles.paper,
+					{ maxHeight: maxSelectorHeight },
+					isUp && {bottom: '100%'},
+					isUp && styles.paperTop
+				]}
+				innerStyle={styles.paperInner}
+				fullWidth zIndex={1001}
+			>
 				{/* Work around for Radiums bad hover support */}
 				<Style rules={{
 					'.autocomplete-selector-hover-item:hover': {
@@ -160,6 +170,12 @@ const styles = {
 		borderBottomLeftRadius: 4,
 		borderBottomRightRadius: 4,
 		overflowY: 'scroll'
+	},
+	paperTop: {
+		borderTopLeftRadius: 4,
+		borderTopRightRadius: 4,
+		borderBottomLeftRadius: 0,
+		borderBottomRightRadius: 0,
 	},
 	paperInner: {
 		zIndex: 1001,
