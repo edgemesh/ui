@@ -16,7 +16,8 @@ export default class AutocompleteSelector extends Component {
 		// Styling
 		selectorStyles: PropTypes.object,
 		selectorItemStyles: PropTypes.object,
-		accent: PropTypes.string,
+		accentColor: PropTypes.string,
+		accentFontColor: PropTypes.string,
 		hoverColor: PropTypes.string,
 		maxSelectorHeight: PropTypes.number,
 		// Events
@@ -24,7 +25,8 @@ export default class AutocompleteSelector extends Component {
 	};
 
 	static defaultProps = {
-		accent: colors.cyan500,
+		accentColor: colors.cyan500,
+		accentFontColor: colors.grey700,
 		hoverColor: colors.grey300,
 		open: false,
 		maxSelectorHeight: 250,
@@ -46,7 +48,17 @@ export default class AutocompleteSelector extends Component {
 
 	render() {
 
-		let { options, accent, hoverColor, selectorStyles, selectorItemStyles, maxSelectorHeight, expandDirection } = this.props;
+		let {
+			options,
+			accentColor,
+			accentFontColor,
+			hoverColor,
+			selectorStyles,
+			selectorItemStyles,
+			maxSelectorHeight,
+			expandDirection
+		} = this.props;
+
 		let { selectionIndex } = this.state;
 
 		const isUp = expandDirection === 'up';
@@ -58,7 +70,13 @@ export default class AutocompleteSelector extends Component {
 					ref={`${option.label}-${i}`}
 					className="autocomplete-selector-hover-item"
 					onMouseDown={this._handleItemClick.bind(this, i)}
-					style={[styles.optionItem, i === 0 && {paddingTop: 16}, selectorItemStyles, i == selectionIndex && {backgroundColor: accent}]}>
+					style={[
+						styles.optionItem,
+						i === 0 && {paddingTop: 16},
+						selectorItemStyles,
+						i == selectionIndex && {backgroundColor: accentColor, color: accentFontColor}
+					]}
+				>
 					{option.label}
 				</div>
 			);

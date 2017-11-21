@@ -24,6 +24,8 @@ A textfield with a propable autocomplete dropdown.
 
 `accentColor`  -- Controls the color of the accents.
 
+`accentFontColor`  -- Controls the color of the fonts when accented.
+
 `textFieldStyles` -- Style object for the Textfield component.
 
 `selectorStyles` -- Style object for the dropdown selector component.

@@ -26,6 +26,7 @@ export default class Autocomplete extends Component {
 		selectorPosition: PropTypes.oneOf(['top','bottom']),
 		// Styling
 		accentColor: PropTypes.string,
+		accentFontColor: PropTypes.string,
 		textFieldStyles: PropTypes.object,
 		selectorStyles: PropTypes.object,
 		maxSelectorHeight: PropTypes.number,
@@ -40,6 +41,7 @@ export default class Autocomplete extends Component {
 		optionValidate: true,
 		maxVisible: 0,
 		accentColor: colors.cyan500,
+		accentFontColor: colors.grey700,
 		openSelectorOnFocus: true,
 		selectorPosition: 'bottom'
 	};
@@ -67,6 +69,7 @@ export default class Autocomplete extends Component {
 			placeholder,
 			floatingLabel,
 			accentColor,
+			accentFontColor,
 			optionValidate,
 			openSelectorOnFocus,
 			selectorPosition,
@@ -85,6 +88,7 @@ export default class Autocomplete extends Component {
 
 		let selectorProps = {
 			accentColor,
+			accentFontColor,
 			open,
 			selectorStyles,
 			maxSelectorHeight,
