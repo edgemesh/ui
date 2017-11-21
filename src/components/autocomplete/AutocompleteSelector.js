@@ -70,7 +70,7 @@ export default class AutocompleteSelector extends Component {
 				style={[
 					styles.paper,
 					{ maxHeight: maxSelectorHeight },
-					isUp && {bottom: '100%'},
+					isUp && {bottom: '100%', top: 'initial'},
 					isUp && styles.paperTop
 				]}
 				innerStyle={styles.paperInner}
