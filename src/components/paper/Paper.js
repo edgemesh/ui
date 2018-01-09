@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Radium from 'radium';
 
 import { colors } from '../../utils';
@@ -134,7 +135,7 @@ const heals = {
 }
 
 const styles = {
-	paper: { 
+	paper: {
 		backgroundColor: colors.white,
 		pointerEvents: 'all',
 		transition: 'box-shadow 0.1s ease-out',

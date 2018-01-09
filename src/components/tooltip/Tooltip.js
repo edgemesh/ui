@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Radium from 'radium';
 import { View } from 'react-blueprint';
 import BaseTooltip from './BaseTooltip';
@@ -19,32 +20,32 @@ export default class Tooltip extends Component {
 		let left;
 		let bottom;
 		let top;
-		
+
 		let startingX = '0px';
 		let startingY = '0px';
-		
+
 		let visibleX = '0px'
 		let visibleY = '0px';
 
 		let triangle = 'topTriangle';
-		
+
 		let backgroundColor = 'rgba(0,0,0,0.5)';
 
 		if (tooltipStyles && tooltipStyles.backgroundColor) {
 			backgroundColor = tooltipStyles.backgroundColor;
 		};
-		
+
 		let triangleColor = {};
 
 		triangleColor.borderColor = `transparent transparent ${backgroundColor} transparent`;
 
 		switch(hPosition) {
-			case 'left': 
+			case 'left':
 				left = 0;
 				startingX = 0;
 				visibleX = startingX;
 				break;
-			case 'right': 
+			case 'right':
 				left = '100%';
 				startingX = '-100%';
 				visibleX = startingX;
@@ -72,7 +73,7 @@ export default class Tooltip extends Component {
 				top = '50%';
 				startingY = '-50%';
 				visibleY = startingY;
-				
+
 				if (hPosition === 'left') {
 					startingX = '-100%';
 					visibleX = 'calc(-100% - 10px)';
@@ -94,7 +95,7 @@ export default class Tooltip extends Component {
 			transform: `translate(${startingX}, ${startingY})`,
 			opacity: visible ? 1 : 0,
 		};
-		
+
 		let visibleStyles = {
 			transform: `translate(${ visibleX }, ${ visibleY })`,
 		};
@@ -102,13 +103,13 @@ export default class Tooltip extends Component {
 		return (
 			<div style={[styles.container, tooltipDynamicStyles, visible && visibleStyles]}>
 				<View column={vPosition === 'top' || vPosition === 'bottom'} style={{justifyContent: 'center', alignItems: 'center'}}>
-					
+
 					{ vPosition === 'bottom' || ( vPosition === 'center' && hPosition === 'right') ? (<div style={[styles[triangle],  triangleColor ]}/>) : null }
-					
+
 					<div style={[ styles.tooltip, tooltipStyles ]}>
 						{placeholder}
 					</div>
-					
+
 					{ vPosition === 'top' || ( vPosition === 'center' && hPosition === 'left' ) ? (<div style={[ styles[triangle], triangleColor ]}/>) : null }
 
 				</View>

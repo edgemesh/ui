@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Radium from 'radium';
 import { colors } from '../../utils/colors';
 import ReactDOM from 'react-dom';
@@ -69,10 +70,10 @@ export default class Accordion extends Component {
 
 		return (
 			<div style={styles.container}>
-				
+
 				{/* Expanded Content when expandDirection prop is set to 'up' */}
 				{ topExpandContent }
-				
+
 				{/* Child elements */}
 				<div style={[childrenContainerStyles, style, disabledStyle]} onClick={!disabled && onClick}>
 					{ children }
@@ -83,7 +84,7 @@ export default class Accordion extends Component {
 			</div>
 		);
 	}
-	
+
 	/////////////////////
 	// Public Methods  //
 	/////////////////////
@@ -159,7 +160,7 @@ export default class Accordion extends Component {
 			expandContentContainerStyle,
 			expandIsOverlay
 		} = this.props;
-		
+
 		let contentContainerStyles;
 
 		if (expandIsOverlay) {

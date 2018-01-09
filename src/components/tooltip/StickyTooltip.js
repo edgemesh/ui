@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { RenderInBody } from 'react-blueprint';
 import Radium from 'radium';
 import BaseTooltip from './BaseTooltip';
@@ -11,7 +12,7 @@ export default class StickyTooltip extends Component {
 	};
 
 	render() {
-		
+
 		let { placeholder, tooltipStyles, position, visible } = this.props;
 
 		let tooltipDynamicStyles = {
@@ -60,7 +61,7 @@ export default class StickyTooltip extends Component {
 				break;
 			default:
 				break;
-		} 
+		}
 		return `translate(${x},${y})`
 	}
 }
@@ -73,6 +74,6 @@ const styles = {
 		position: 'absolute',
 		transition: 'opacity 0.2s',
 		pointerEvents: 'none',
-		zIndex: 9999999		
+		zIndex: 9999999
 	}
 }

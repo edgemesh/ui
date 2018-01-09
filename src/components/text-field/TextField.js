@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Radium, { Style } from 'radium';
 import { BaseTextField } from './BaseTextField';
 import { Paper, Icon } from '../../';
@@ -54,7 +55,7 @@ export default class TextField extends Component {
 	}
 
 	componentDidMount() {
-		// This is needed to detect brwoser autocomplete/autofill 
+		// This is needed to detect brwoser autocomplete/autofill
         setTimeout(()=>{
 			let value = this.refs.input.value,
 				defaultValue = this.props.defaultValue;
@@ -67,7 +68,7 @@ export default class TextField extends Component {
 
 	render() {
 
-		let { 
+		let {
 			value,
 			defaultValue,
 			validate,
@@ -101,7 +102,7 @@ export default class TextField extends Component {
 			onEscape,
 			onTab,
 		} = this.props;
-		
+
 		let isFocused = this.props.isFocused(),
 			isValid = this.props.isValid(),
 			hasValue = this.hasValue(),
@@ -114,7 +115,7 @@ export default class TextField extends Component {
 				underline && styles.underline,
 				{
 					backgroundColor: isError ? errorColor : (validate && isValid) ? successColor : disabled ? disabledBackgroundColor : accentColor,
-					transform: `scaleX(${isFocused || isError ? 1 : 0})` 
+					transform: `scaleX(${isFocused || isError ? 1 : 0})`
 				 },
 			]} />
 		);
@@ -127,7 +128,7 @@ export default class TextField extends Component {
 		let floatingLabelColor;
 
 		if (isFocused) {
-			floatingLabelColor = !disabled ? accentColor : disabledPlaceholderColor; 
+			floatingLabelColor = !disabled ? accentColor : disabledPlaceholderColor;
 		} else {
 			if (hasValue){
 				floatingLabelColor = !disabled ? textColor : disabledPlaceholderColor;
@@ -145,7 +146,7 @@ export default class TextField extends Component {
 
 			<div style={[
 				styles.floatingLabel,
-				{ 
+				{
 					color: floatingLabelColor,
 					transform: `scale(${labelCoords.scale}) translateX(${labelCoords.x}px) translateY(${labelCoords.y}px)`,
 					lineHeight: `${lineHeight}px`
@@ -157,12 +158,12 @@ export default class TextField extends Component {
 
 		let errorMessage = (
 
-			<div style={[ 
+			<div style={[
 				styles.errorMessage,
 				!pushErrorText && styles.absolute,
 				{ height: isError ? 15 : 0 }
 			]}>
-				<p style={[ 
+				<p style={[
 					styles.errorText,
 					{ color: errorColor }
 				]}>{errorText}</p>
@@ -171,7 +172,7 @@ export default class TextField extends Component {
 
 		let checkMark = (
 
-			<span style={[styles.checkMark, { 
+			<span style={[styles.checkMark, {
 				opacity: validate && isValid ? 1 : 0,
 				transform: `scale(${validate && isValid ? 1 : 0})`
 			}]}>
@@ -180,7 +181,7 @@ export default class TextField extends Component {
 		);
 
 
-		let inputProps = { 
+		let inputProps = {
 			defaultValue,
 			disabled,
 			onKeyPress,
@@ -193,7 +194,7 @@ export default class TextField extends Component {
 		};
 		if(isFocused) inputProps.placeholder = placeholder;
 
-		let inputPadding = (underline ? (compact ? styles.underlineCompactPadding : styles.underlinePadding) : 
+		let inputPadding = (underline ? (compact ? styles.underlineCompactPadding : styles.underlinePadding) :
 							overline ? (compact ? styles.overlineCompactPadding : styles.overlinePadding) : 0);
 
 		return (
@@ -233,16 +234,16 @@ export default class TextField extends Component {
 						{ overline && line }
 						<div style={{ display: 'flex', position: 'relative' }}>
 							<input
-								ref='input' 
+								ref='input'
 								autoComplete={this.props.autocomplete ? 'on' : 'off'}
 								placeholder={this.props.floatingLabel ? '' : this.props.placeholder}
-								style={[ 
+								style={[
 									styles.input,
 									inputPadding,
 									validate && isValid ? styles.paddingCheckMark : {},
 									{ color: textColor },
 									disabled && {color: disabledTextColor, cursor: 'not-allowed' }
-									]} 
+									]}
 								{...inputProps} />
 							{validate && (<div style={ styles.checkContainer }>{ checkMark }</div>)}
 						</div>
@@ -265,7 +266,7 @@ const styles = {
 		marginBottom: 20,
 		width: 200
 	},
-	paper: { 
+	paper: {
 		borderRadius: 4,
 		width: '100%'
 	},
@@ -295,13 +296,13 @@ const styles = {
 		borderBottomRightRadius: 2,
 		bottom: 0
 	},
-	underlinePadding: { 
+	underlinePadding: {
 		paddingTop: 12,
 		paddingRight: 10,
 		paddingBottom: 10,
 		paddingLeft: 10
 	},
-	underlineCompactPadding: { 
+	underlineCompactPadding: {
 		paddingTop: 7,
 		paddingRight: 10,
 		paddingBottom: 5,
@@ -313,13 +314,13 @@ const styles = {
 		borderTopRightRadius: 50,
 		top: 0
 	},
-	overlinePadding: { 
+	overlinePadding: {
 		paddingTop: 10,
 		paddingRight: 10,
 		paddingBottom: 12,
 		paddingLeft: 10
 	},
-	overlineCompactPadding: { 
+	overlineCompactPadding: {
 		padding: 5,
 		paddingRight: 10,
 		paddingBottom: 7,
@@ -328,9 +329,9 @@ const styles = {
 	paddingCheckMark: {
 		paddingRight: 30,
 		marginRight: -20
-	},	
+	},
 	containerWidthCheckMark: {
-		width: 'calc(100% - 20px)' 
+		width: 'calc(100% - 20px)'
 	},
 	borderRadius: { borderRadius: 4 },
 	floatingLabel: {

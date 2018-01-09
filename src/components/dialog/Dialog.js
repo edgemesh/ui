@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { findDOMNode as $ } from 'react-dom';
 import Icon from '../icon/Icon';
 import Radium from 'radium';
@@ -23,7 +24,7 @@ export default class Dialog extends Component {
 		titleStyle: PropTypes.object,
 		bodyStyle: PropTypes.object
 	};
-	
+
 	static defaultProps = {
 		accentColor: colors.grey200,
 		backgroundColor: colors.grey50,
@@ -33,7 +34,7 @@ export default class Dialog extends Component {
 
 	render() {
 
-		let { 
+		let {
 			show,
 			dismiss,
 			isShown,
@@ -56,7 +57,7 @@ export default class Dialog extends Component {
 			actions = actions.map((action, i)=>{
 				return (
 					<div key={i} style={styles.actionButton}>
-						<RaisedButton 
+						<RaisedButton
 							{...action.props}
 							label={action.label}
 							onClick={action.onClick}
@@ -71,7 +72,7 @@ export default class Dialog extends Component {
 
 			<Paper depth={1} style={[style, styles.container]}>
 				<div style={{backgroundColor}}>
-					
+
 					{/* Title */}
 					<div style={[styles.title, {backgroundColor: accentColor}, titleStyle]}>
 
@@ -79,7 +80,7 @@ export default class Dialog extends Component {
 
 						{/* Close Icon */}
 						<div onClick={dismiss}>
-							<Icon 
+							<Icon
 								key='close'
 								icon='close'
 								size={28}
@@ -87,13 +88,13 @@ export default class Dialog extends Component {
 								style={[ styles.close, closeStyle ]} />
 						</div>
 					</div>
-					
+
 
 					{/* Body */}
 					<div style={[styles.body, bodyStyle]}>
 						{body}
 					</div>
-					
+
 					{/* Actions */}
 					<View style={styles.actions}>
 						{actions}
@@ -152,7 +153,7 @@ const styles = {
 		right: 20,
 		cursor: 'pointer',
 		':hover':{
-			fill: colors.grey700	
+			fill: colors.grey700
 		}
 	}
 

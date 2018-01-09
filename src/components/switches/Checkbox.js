@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Radium from 'radium';
 
 import BaseSwitch from './BaseSwitch';
@@ -31,7 +32,7 @@ export default class Checkbox extends Component {
 
 	render() {
 
-		let { 
+		let {
 			size,
 			outlineColor,
 			disabledColor,
@@ -49,14 +50,14 @@ export default class Checkbox extends Component {
 		return (
 			<div style={{ width: size, height: size }}>
 				<TouchRipple ref="ripple" handleMouseDown={()=>{}} overflowHidden={false} rippleColor={checkColor} speed={150}>
-					<Icon 
+					<Icon
 						icon='checkbox-outline'
-						size={size} 
+						size={size}
 						color={isSwitched ? checkColor : outlineColor}
 						style={[
 							styles.box
 					]} />
-					<Icon 
+					<Icon
 						icon='checkbox-checked'
 						size={size}
 						color={checkColor}
@@ -73,7 +74,7 @@ export default class Checkbox extends Component {
 
 
 const styles = {
-	box: { 
+	box: {
 		position: 'absolute'
 
 	},

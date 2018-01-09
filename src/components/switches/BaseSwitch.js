@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Radium from 'radium';
 import keyCode from '../../utils/keyCode';
 import TouchRipple from '../ripple/TouchRipple';
@@ -14,14 +15,14 @@ export const BaseSwitch = (ComposedComponent) => {
 	return class extends Component {
 
 		// React Lifecycle
-		// 
+		//
 		static propTypes = {
 			size: PropTypes.number,
 			label: PropTypes.string,
 			labelPosition: PropTypes.oneOf(['left', 'right']),
 			labelStyle: PropTypes.object,
 
-			// Booleans 
+			// Booleans
 			defaultValue: PropTypes.bool,
 			disableFocusRipple: PropTypes.bool,
 			disableTouchRipple: PropTypes.bool,
@@ -54,15 +55,15 @@ export const BaseSwitch = (ComposedComponent) => {
 
 		render() {
 			let { value } = this.state;
-			let { 
+			let {
 				size,
 				disabled,
 				label,
 				labelPosition,
 				labelStyle,
 				disabledColor
-			} = this.props; 
-			
+			} = this.props;
+
 			let labelDisabledStyle = {};
 
 			if (disabled) labelDisabledStyle = { color: disabledColor };
@@ -71,7 +72,7 @@ export const BaseSwitch = (ComposedComponent) => {
 				<div style={[
 					styles.label,
 					labelStyle,
-					{ 
+					{
 						lineHeight: `${size}px`,
 						paddingRight: labelPosition === 'left' ? 10 : 0,
 						paddingLeft: labelPosition === 'right' ? 10 : 0
@@ -113,7 +114,7 @@ export const BaseSwitch = (ComposedComponent) => {
 		// Action Methods
 		//
 		setValue(value) { this.setState({ value }) }
-		
+
 		getValue() { return this.state.value }
 
 		hasChanged() { return this.props.defaultValue !== this.state.value }
@@ -140,9 +141,9 @@ export const BaseSwitch = (ComposedComponent) => {
 			}
 
 			if (this.props.onClick) this.props.onClick(e);
-			
+
 			options.type === 'toggle' ? this._onToggle(e, !this.state.value) : ()=>{};
-			
+
 			e.stopPropagation();
 		}
 
@@ -153,7 +154,7 @@ export const BaseSwitch = (ComposedComponent) => {
 
 			if (this.props.onKeyDown) this.props.onKeyDown(e);
 		}
-		
+
 		_onKeyUp(e) {
 			if (e.keyCode == keyCode.SPACE){
 				this._onClick(e);
@@ -173,7 +174,7 @@ export const BaseSwitch = (ComposedComponent) => {
 
 		_onMouseUp(e) {
 			if (this.props.onMouseUp) this.props.onMouseUp(e);
-			
+
 			this.refs.composed.refs.ripple.endCenterRipple();
 		}
 
@@ -192,7 +193,7 @@ export const BaseSwitch = (ComposedComponent) => {
 				this.refs.composed.refs.ripple.endCenterRipple();
 				this.tabPressed = false;
 			}
-						
+
 			if( onBlur ) onBlur(e);
 		}
 

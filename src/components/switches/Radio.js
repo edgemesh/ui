@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Radium from 'radium';
 
 import BaseSwitch from './BaseSwitch';
@@ -22,14 +23,14 @@ export default class Radio extends Component {
 		disabledColor: colors.grey400,
 		switchColor: colors.cyan500
 	};
-	
+
 	static options = {
 		type: 'radio'
 	};
 
 	render() {
 
-		let { 
+		let {
 			size,
 			outlineColor,
 			disabledColor,
@@ -48,14 +49,14 @@ export default class Radio extends Component {
 		return (
 			<div style={{ width: size, height: size, cursor: isDisabled ? 'not-allowed' : 'pointer' }}>
 				<TouchRipple ref="ripple" handleMouseDown={()=>{}} overflowHidden={false} rippleColor={switchColor} speed={150}>
-					<Icon 
+					<Icon
 						icon='radio-outline'
-						size={size} 
+						size={size}
 						color={isSwitched ? switchColor : outlineColor}
 						style={[
 							styles.box
 					]} />
-					<Icon 
+					<Icon
 						icon='radio-on'
 						size={size}
 						color={switchColor}
@@ -72,7 +73,7 @@ export default class Radio extends Component {
 
 
 const styles = {
-	box: { 
+	box: {
 		position: 'absolute'
 
 	},

@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Radium, { Style } from 'radium';
 import { View } from 'react-blueprint';
 import { colors } from '../../utils/colors';
@@ -38,7 +39,7 @@ export default class Chips extends Component {
 	render() {
 
 		let { chips } = this.state;
-	
+
 		let {
 			chipFontColor,
 			chipBackgroundColor,
@@ -49,7 +50,7 @@ export default class Chips extends Component {
 		if (chips.length > 0) {
 			chips = chips.map((item, i)=>{
 				return (
-					<ChipItem 
+					<ChipItem
 						key={item.value}
 						label={item.label}
 						value={item.value}
@@ -73,7 +74,7 @@ export default class Chips extends Component {
 
 					{/* Custom Styles/Classes to power TransitionGroup */}
 					<Style rules={Transitions[transition]} />
-					
+
 					{chips}
 
 				</TransitionGroup>
@@ -107,7 +108,7 @@ export default class Chips extends Component {
 		this._onAdd(chipArray);
 		this._onChange(chipArray);
 	}
-	
+
 	removeChip(value) {
 		let {chips} = this.state;
 		let chipArray = chips.slice(0); // Clone chip array

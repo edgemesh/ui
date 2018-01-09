@@ -1,15 +1,16 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Radium from 'radium';
 
 @Radium
 export const BaseTooltip = (ComposedComponent) => {
-	
+
 	let options = {
 		type: ''
 	};
 
 	if (ComposedComponent.options) options = ComposedComponent.options;
-	
+
 	return class extends Component {
 
 		static propTypes = {
@@ -49,14 +50,14 @@ export const BaseTooltip = (ComposedComponent) => {
 			}
 
 			return (
-				<div 
+				<div
 					style={[{position: 'relative'},style]}
 					onMouseMove={options.type === 'stickyTooltip' && this._onMouseMove.bind(this)}
 					onMouseEnter={this._onMouseEnter.bind(this)}
 					onMouseLeave={this._onMouseLeave.bind(this)}>
-					
+
 					{children}
-					
+
 					<ComposedComponent {...this.props} {...this.state} hPosition={hPosition} vPosition={vPosition} />
 
 				</div>
@@ -66,7 +67,7 @@ export const BaseTooltip = (ComposedComponent) => {
 		////////////
 		// Events //
 		////////////
-		
+
 		//Use the Synthetic Event's pageX/pageY properties to update state.
 		_onMouseMove(e){
 			this.setState({

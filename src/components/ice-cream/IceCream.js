@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Radium, { Style } from 'radium';
 import { View } from 'react-blueprint';
 import { colors } from '../../utils/colors';
@@ -40,7 +41,7 @@ export default class Chips extends Component {
 	render() {
 
 		let { iceCreamBar } = this.state;
-	
+
 		let {
 			transition,
 			style
@@ -103,7 +104,7 @@ export default class Chips extends Component {
 		let rippleColor = colorTools.shadeBlend(0.4 , accent );
 
 		let iceCreamBar = (
-			<Paper depth={3} key={Date.now()} fullHeight={false} fullWidth={false} style={[styles.container, styles.iceCreamBarWrapper, this._getPlacement()]}>	
+			<Paper depth={3} key={Date.now()} fullHeight={false} fullWidth={false} style={[styles.container, styles.iceCreamBarWrapper, this._getPlacement()]}>
 				<View row auto style={[ styles.iceCreamBar, { borderLeft: `5px solid ${accent}`, backgroundColor } ]}>
 					<View auto column style={[styles.message, {color: fontColor}]}>
 						{message}

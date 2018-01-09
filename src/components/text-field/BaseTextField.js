@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Validator from 'validator';
 import keyCode from '../../utils/keyCode';
 
@@ -82,16 +83,16 @@ export const BaseTextField = (ComposedComponent) => {
         }
 
         // Public Methods
-        setValue(value) { 
+        setValue(value) {
             this._getInputNode().value = value;
             this._updateValue();
         }
 
         setErrorText(errorText) { this.setState({ errorText })}
-    
+
         clearErrorText() { this.setState({ errorText: '' })}
-        
-        getValue() { 
+
+        getValue() {
             let stateValue = this.state.value,
                 domValue = this._getInputNode().value;
 
@@ -100,7 +101,7 @@ export const BaseTextField = (ComposedComponent) => {
                     console.warn(
                         'DOM value and state value are out of sync.  ' +
                         'This is because you are calling \`TextField.getValue()\` ' +
-                        'before your \`keyUpDelay\` resolved.  ' + 
+                        'before your \`keyUpDelay\` resolved.  ' +
                         'You may use the returned DOM value, but it may not be validated by validator. ' +
                         'Otherwise, you may want to decrease your \`keyUpDelay\` timeout.'
                     );
@@ -113,12 +114,12 @@ export const BaseTextField = (ComposedComponent) => {
 
         getErrorText() { return this.state.errorText }
 
-        blur() { 
+        blur() {
             this._getInputNode().blur();
             this.setState({ isFocused: false });
         }
 
-        focus() { 
+        focus() {
             this._getInputNode().focus();
             this.setState({ isFocused: true });
         }
@@ -132,7 +133,7 @@ export const BaseTextField = (ComposedComponent) => {
 
         isValid() { return this.state.isValid }
 
-        hasChanged() { 
+        hasChanged() {
             if(!this.props.defaultValue && !this.getValue()) return false;
             return this.props.defaultValue !== this.getValue()
         }
@@ -207,7 +208,7 @@ export const BaseTextField = (ComposedComponent) => {
                         isValid: Validator.matches(value, validateOptions),
                         error: validateOptions.error ? validateOptions.error : `This field does not match.`
                     };
-                case 'length': 
+                case 'length':
                     if(!validateOptions.length) console.error('Must provide `validateOptions.length` to `length` validator.');
                     return {
                         isValid: Validator.isLength(value, validateOptions),
@@ -215,7 +216,7 @@ export const BaseTextField = (ComposedComponent) => {
                             validateOptions.max ? `Input must between ${validateOptions.min} and ${validateOptions.max} characters.` : `Input must at least ${validateOptions.min} characters.`
                         )
                     }
-                case 'isIn': 
+                case 'isIn':
                     if(!validateOptions.whitelist) return console.error('Must provide `validateOptions.whitelist` to `isIn` validator.');
                     return {
                         isValid: Validator.isIn(value, validateOptions.whitelist),
@@ -253,7 +254,7 @@ export const BaseTextField = (ComposedComponent) => {
             // Keydown update delay
             if(keyUpDelay) {
                 if(this.keyUpDelay) clearTimeout(this.keyUpDelay);
-                this.keyUpDelay = setTimeout(() => { 
+                this.keyUpDelay = setTimeout(() => {
                     this._updateValue(value);
                     if(onKeyUp) onKeyUp(e);
                 }, keyUpDelay);
@@ -309,7 +310,7 @@ export const BaseTextField = (ComposedComponent) => {
             if(onTab) onTab(e);
         }
 
-        _onFocus(e) { 
+        _onFocus(e) {
             let { onFocus } = this.props;
             this.setState({ isFocused: true });
             if(onFocus) onFocus(e);

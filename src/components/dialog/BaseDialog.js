@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Radium, { Style } from 'radium';
 import { View, RenderInBody } from 'react-blueprint';
 import TransitionGroup from 'react-addons-css-transition-group';
@@ -46,7 +47,7 @@ export const BaseDialog = (ComposedComponent, ref) => {
 		state = {
 			show: this.props.openOnMount
 		};
-		
+
 		componentWillUnmount() {
 			this._allowScrolling();
 		}
@@ -60,12 +61,12 @@ export const BaseDialog = (ComposedComponent, ref) => {
 				show: this.show.bind(this),
 				dismiss: this.dismiss.bind(this)
 			});
-			
+
 			// Some transitions require style changes to the dialogContainer
 			let dialogContainerStyles = {};
 
 			switch(transition) {
-				case 'sticky-top': 
+				case 'sticky-top':
 					dialogContainerStyles = {
 						justifyContent: 'flex-start'
 					};
@@ -81,12 +82,12 @@ export const BaseDialog = (ComposedComponent, ref) => {
 			if (lockScrolling) { show ? this._preventScrolling() : this._allowScrolling() };
 
 			let content = (
-				
+
 				<div style={[styles.container, show ? {pointerEvents: 'auto'} : {pointerEvents: 'none'}]}>
-					
+
 					{/* Custom Styles/Classes to power TransitionGroup */}
 					<Style rules={Transitions[transition]} />
-					
+
 					{/* Transition Group Container */}
 					<View column style={[styles.dialogContainer, dialogContainerStyles]}>
 						<TransitionGroup
@@ -133,7 +134,7 @@ export const BaseDialog = (ComposedComponent, ref) => {
 		_onShow() {
 			if (this.props.onShow) this.props.onShow();
 		}
-		
+
 		_onDismiss() {
 			if (this.props.onDismiss) this.props.onDismiss();
 		}
@@ -169,7 +170,7 @@ const styles = {
 		width: '100%',
 		height: '100%',
 	},
-	overlay: { 
+	overlay: {
 		backgroundColor: 'rgba(0,0,0,0.8)',
 		width: '100%',
 		height: '100%',

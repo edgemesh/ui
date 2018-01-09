@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM, { findDOMNode as $ } from 'react-dom';
 import { View } from 'react-blueprint';
 import Radium from 'radium';
@@ -19,11 +20,11 @@ export default class Tab extends Component {
         depth: PropTypes.number,                     // Sets the depth of the outer `Paper` element of the Tabs component
         contentContainerStyles: PropTypes.object,    // Pass style to the content container of the `Tabs` elements
         accent: PropTypes.string,                    // InkBar and active `Tab` text color
-        contentContainerClassName: PropTypes.string, // Just here for webkit scrollbar support 
+        contentContainerClassName: PropTypes.string, // Just here for webkit scrollbar support
         fixedWidthTabs: PropTypes.bool,              // True: Children `Tab` elements are fixed equal width --
                                                      // False: Children `Tab` elements are auto width aligned flex-start
         // Event
-        onSelect: PropTypes.func                     // Optional onSelect event override for all `Tab` components -- 
+        onSelect: PropTypes.func                     // Optional onSelect event override for all `Tab` components --
                                                      // onSelect will return value and tab index of selected tab on trigger
     };
 
@@ -65,7 +66,7 @@ export default class Tab extends Component {
     }
 
     render() {
-        let { 
+        let {
             children,
             tabStyles,
             tabSelectedStyles,
@@ -113,7 +114,7 @@ export default class Tab extends Component {
 
         return (
             <Paper style={[styles.container, style]} depth={depth}>
-                
+
                 {/* Tab Header Row - Row containing Tab components */}
                 <Paper healLeft healRight healTop depth={1}>
                     <View ref="tabs-container" row style={[styles.rowHeader, tabContainerStyles]}>
@@ -140,7 +141,7 @@ export default class Tab extends Component {
 
         this.setState({
             selectedIndex: index,
-            selectedTabWidth, 
+            selectedTabWidth,
             selectedTabLeft
         });
     }
@@ -192,8 +193,8 @@ export default class Tab extends Component {
             let selectedTabWidth = $(this.refs[`Tab-${index}`]).offsetWidth;
             let selectedTabLeft = $(this.refs[`Tab-${index}`]).offsetLeft;
             let tabsContainerWidth = $(this.refs['tabs-container']).offsetWidth;
-            
-            if (setState) {        
+
+            if (setState) {
                 this.setState({ selectedTabWidth, selectedTabLeft, tabsContainerWidth });
             } else {
                 return { selectedTabWidth, selectedTabLeft, tabsContainerWidth };
@@ -214,9 +215,9 @@ export default class Tab extends Component {
                 }
             }
         });
-        
+
         if (!activeTab) { console.warn('You must have at least ONE `Tab` element that is not disabled!')}
-        
+
         return firstActiveTab;
     }
 }

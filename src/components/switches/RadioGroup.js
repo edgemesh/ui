@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Radium from 'radium';
 
 import { Icon } from '../../';
@@ -26,7 +27,7 @@ export default class RadioGroup extends Component {
 
 	componentWillMount() {
 		let i = 0;
-		
+
 		React.Children.forEach(this.props.children, (child)=> {
 			if(child.props.radio){
 				if (this._hasCheckAttribute(child)) i++;
@@ -47,7 +48,7 @@ export default class RadioGroup extends Component {
 
 		// Iterate through the children, for every child return a radio
 		let radios;
-		
+
 		if (children) {
 			radios = React.Children.map(children, (child)=> {
 				if(child.props && child.props.radio){
@@ -84,11 +85,11 @@ export default class RadioGroup extends Component {
 	}
 
 	// Events
-	// 
+	//
 	_onChange(selection, e) {
 		this._updateRadios(selection);
 
-		// On a successfull click 
+		// On a successfull click
 		if (this.switchedRadios == 0) {
 			setTimeout(()=> {
 				if (this.props.onChange) this.props.onChange(e, selection);
@@ -97,7 +98,7 @@ export default class RadioGroup extends Component {
 	}
 
 	// Private Methods
-	// 
+	//
 	_checkDescendants(component) {
 		let { labelPosition } = this.props;
 
@@ -136,7 +137,7 @@ export default class RadioGroup extends Component {
 	}
 
 	// Public Methods
-	// 
+	//
 	getValue() {
 		return this.state.value;
 	}
@@ -144,7 +145,7 @@ export default class RadioGroup extends Component {
 	setValue(selection) {
 		this._updateRadios(selection);
 	}
-	
+
 	getDefaultValue() {
 		return this.props.defaultValue;
 	}

@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Radium from 'radium';
 
 import { colors } from '../../utils/colors';
@@ -29,7 +30,7 @@ export default class Icon extends Component {
 	renderGraphic() {
 		switch (this.props.icon) {
 			// React SVG
-			// 
+			//
 			case 'check':
 				return <g><path d='M9 16.17l-4.17-4.17-1.42 1.41 5.59 5.59 12-12-1.41-1.41z' /></g>
 			case 'checkbox-checked':
@@ -142,16 +143,16 @@ export default class Icon extends Component {
 				return (<g><path d="M672 1472q0-40-28-68t-68-28-68 28-28 68 28 68 68 28 68-28 28-68zm0-1152q0-40-28-68t-68-28-68 28-28 68 28 68 68 28 68-28 28-68zm640 128q0-40-28-68t-68-28-68 28-28 68 28 68 68 28 68-28 28-68zm96 0q0 52-26 96.5t-70 69.5q-2 287-226 414-68 38-203 81-128 40-169.5 71t-41.5 100v26q44 25 70 69.5t26 96.5q0 80-56 136t-136 56-136-56-56-136q0-52 26-96.5t70-69.5v-820q-44-25-70-69.5t-26-96.5q0-80 56-136t136-56 136 56 56 136q0 52-26 96.5t-70 69.5v497q54-26 154-57 55-17 87.5-29.5t70.5-31 59-39.5 40.5-51 28-69.5 8.5-91.5q-44-25-70-69.5t-26-96.5q0-80 56-136t136-56 136 56 56 136z"/></g>);
 			case 'scale':
 				return (<g><path d="M1472 448l-384 704h768zm-1280 0l-384 704h768zm821-192q-14 40-45.5 71.5t-71.5 45.5v1291h608q14 0 23 9t9 23v64q0 14-9 23t-23 9h-1344q-14 0-23-9t-9-23v-64q0-14 9-23t23-9h608v-1291q-40-14-71.5-45.5t-45.5-71.5h-491q-14 0-23-9t-9-23v-64q0-14 9-23t23-9h491q21-57 70-92.5t111-35.5 111 35.5 70 92.5h491q14 0 23 9t9 23v64q0 14-9 23t-23 9h-491zm-181 16q33 0 56.5-23.5t23.5-56.5-23.5-56.5-56.5-23.5-56.5 23.5-23.5 56.5 23.5 56.5 56.5 23.5zm1088 880q0 73-46.5 131t-117.5 91-144.5 49.5-139.5 16.5-139.5-16.5-144.5-49.5-117.5-91-46.5-131q0-11 35-81t92-174.5 107-195.5 102-184 56-100q18-33 56-33t56 33q4 7 56 100t102 184 107 195.5 92 174.5 35 81zm-1280 0q0 73-46.5 131t-117.5 91-144.5 49.5-139.5 16.5-139.5-16.5-144.5-49.5-117.5-91-46.5-131q0-11 35-81t92-174.5 107-195.5 102-184 56-100q18-33 56-33t56 33q4 7 56 100t102 184 107 195.5 92 174.5 35 81z"/></g>)
-			default: 
+			default:
 				return <g />
 		}
 	}
 
 	render() {
-		
+
 		switch(this.props.icon) {
 			// Font Awesome
-			// 
+			//
 			case 'scale':
 			case 'code-fork':
 				return (
@@ -163,12 +164,12 @@ export default class Icon extends Component {
 							height: this.props.size,
 							overflow: 'visible'
 							// transform: 'rotate(180deg)'
-						}, this.props.style 
+						}, this.props.style
 					]}>{this.renderGraphic()}</svg>
 				);
 			// React SVG
-			// 
-			default: 
+			//
+			default:
 				return (
 					<svg className={this.props.className} viewBox='0 0 24 24' preserveAspectRatio='xMidYMid meet'
 					style={[{
@@ -177,16 +178,16 @@ export default class Icon extends Component {
 							width: this.props.size,
 							height: this.props.size,
 							overflow: 'visible'
-						}, this.props.style 
+						}, this.props.style
 					]}>{this.renderGraphic()}</svg>
 				);
 		}
 
 
 	}
-  
+
 }
 
 const styles = {
-	
+
 }

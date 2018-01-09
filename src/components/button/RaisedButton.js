@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Radium, {Style} from 'radium';
 import { BaseButton } from './BaseButton';
 import { Paper } from '../../';
@@ -44,10 +45,10 @@ export default class RaisedButton extends Component {
 
 	render() {
 		let { depth } = this.state;
-		
-		let { 
+
+		let {
 			// Button Native Props
-			label, 
+			label,
 			disabled,
 			style,
 			onClick,
@@ -71,16 +72,16 @@ export default class RaisedButton extends Component {
 
 		return (
 			<Paper fullWidth={this.props.fullWidth} fullHeight={false} style={styles.paper} depth={depth}>
-				{/* Work-around fix for Radium throwing a unique key error -- 
+				{/* Work-around fix for Radium throwing a unique key error --
 					TODO: Re-Write TouchRipple to use ReactCSSTransitionGroups, which should alleviate the error */}
-				<Style rules={{		
+				<Style rules={{
 					[`.emui-button-hover-${id}:hover`]:{
 						backgroundColor: `${hoverColor} !important`,
 					}
 				}}/>
 				<div style={styles.rippleContainer}>
 					<TouchRipple ref="ripple" rippleColor={rippleColor}>
-						<button 
+						<button
 							{...buttonProps}
 							className={!disabled && `emui-button-hover-${id}`}
 							onMouseDown={this._handleMouseDown.bind(this)}
@@ -91,9 +92,9 @@ export default class RaisedButton extends Component {
 								styles.button,
 								disabled ? disabledStyle : style
 							]}>
-							
+
 							{children ? children : label}
-						
+
 						</button>
 					</TouchRipple>
 				</div>

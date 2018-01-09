@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Radium from 'radium';
 
 // React Blue Print
@@ -28,14 +29,14 @@ export default class Toggle extends Component {
 		toggleOnColor: colors.cyan500,
 		toggleOffColor: colors.grey50,
 	};
-	
+
 	static options = {
 		type: 'toggle'
 	};
 
 	render() {
 
-		let { 
+		let {
 			size,
 			outlineColor,
 			disabledColor,
@@ -71,7 +72,7 @@ export default class Toggle extends Component {
 const styles = {
 	container: {
 		alignItems: 'center',
-		position: 'relative' 
+		position: 'relative'
 	},
 	track: {
 		width: '100%',
@@ -79,7 +80,7 @@ const styles = {
 		borderRadius: 10
 	},
 	thumb: {
-		bottom: ( (18/2) - (10/2) ) * -1, // Thumb height / 2 - Track height /2 
+		bottom: ( (18/2) - (10/2) ) * -1, // Thumb height / 2 - Track height /2
 		left: 0,
 		height: 18,
 		width: 18,

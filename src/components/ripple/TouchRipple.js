@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import Radium, { Style } from 'radium';
 import { colors } from '../../utils/colors';
@@ -7,7 +8,7 @@ import Transitions from '../../utils/transitions';
 
 @Radium
 export default class TouchRipple extends Component {
-	
+
 	static propTypes = {
 		rippleColor: PropTypes.string,
 		overflowHidden: PropTypes.bool,
@@ -16,7 +17,7 @@ export default class TouchRipple extends Component {
 		handleMouseUp: PropTypes.func
 	};
 
-	static defaultProps = { 
+	static defaultProps = {
 		rippleColor: colors.grey600,
 		overflowHidden: true
 	};
@@ -60,7 +61,7 @@ export default class TouchRipple extends Component {
 				onMouseUp={this._handleMouseUp.bind(this)}
 				ref='ripple-container'
 				style={[styles.rippleContainer, !overflowHidden && styles.overflowVisible]}>
-				
+
 				<Style rules={{
 					'.touch-ripple-enter': {
 						opacity: '0 !important',
@@ -103,13 +104,13 @@ export default class TouchRipple extends Component {
 									top: y,
 									transition: `transform ${rippleTransitionTime}ms ease-out, opacity ${400}ms ease-out`
 
-								}]} 
+								}]}
 							/>
 						);
 					})}
 
 				</TransitionGroup>
-				
+
 				{children}
 			</div>
 		);
@@ -126,7 +127,7 @@ export default class TouchRipple extends Component {
 	}
 
 	_handleMouseDown({pageX, pageY}) {
-		if (!this.props.handleMouseDown) {	
+		if (!this.props.handleMouseDown) {
 			// Current ripple key, needs to be unique
 			let current = 'ripple-T' + Date.now();
 

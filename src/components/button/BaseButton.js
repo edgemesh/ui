@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Paper } from '../../';
 import { colors } from '../../utils/colors';
 
@@ -32,7 +33,7 @@ export const BaseButton = (ComposedComponent, ref) => {
 		// Events
 		_onClick(e) {
 			let { onClick } = this.props;
-			
+
 			if(this.tabPressed){
 				this.refs.composed.refs.ripple.endCenterRipple();
 				this.tabPressed = false;
@@ -44,7 +45,7 @@ export const BaseButton = (ComposedComponent, ref) => {
 
 		_onFocus(e) {
 			let { onFocus } = this.props;
-			
+
 			if( onFocus ) onFocus(e);
 		}
 
@@ -55,7 +56,7 @@ export const BaseButton = (ComposedComponent, ref) => {
 				this.refs.composed.refs.ripple.endCenterRipple();
 				this.tabPressed = false;
 			}
-						
+
 			if( onBlur ) onBlur(e);
 		}
 
@@ -83,7 +84,7 @@ export const BaseButton = (ComposedComponent, ref) => {
 
 			let { style, disabled, fullWidth, hoverColor, disabledStyle } = this.props;
 
-			let onClick = !disabled ? this._onClick.bind(this) : ()=>{}, 
+			let onClick = !disabled ? this._onClick.bind(this) : ()=>{},
 				onFocus = !disabled ? this._onFocus.bind(this) : ()=>{},
 				onBlur = !disabled ? this._onBlur.bind(this) : ()=>{},
 				onKeyDown = !disabled ? this._onKeyDown.bind(this) : ()=>{},
