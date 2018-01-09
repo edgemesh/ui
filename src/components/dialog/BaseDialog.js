@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Radium, { Style } from 'radium';
-import { View, RenderInBody } from 'react-blueprint';
 import TransitionGroup from 'react-addons-css-transition-group';
 import Transitions from '../../utils/transitions';
+import View from '../view/View';
+import RenderInBody from '../render-in-body/RenderInBody';
+
 
 const transitionSpeed = 300;
 

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View } from 'react-blueprint';
 import Radium, {Style} from 'radium';
 import { colors } from '../../utils/colors';
 import Accordion from '../accordion/Accordion';
@@ -8,6 +7,7 @@ import Icon from '../icon/Icon';
 import Paper from '../paper/Paper';
 import uuid from 'uuid';
 import _ from 'lodash';
+import View from '../view/View';
 
 
 let id = uuid.v1();

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Radium from 'radium';
-import { View } from 'react-blueprint';
 import BaseTooltip from './BaseTooltip';
+import View from '../view/View';
 
 @BaseTooltip
 @Radium

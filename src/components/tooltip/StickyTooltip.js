@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { RenderInBody } from 'react-blueprint';
 import Radium from 'radium';
 import BaseTooltip from './BaseTooltip';
+import RenderInBody from '../render-in-body/RenderInBody';
 
 @BaseTooltip
 @Radium

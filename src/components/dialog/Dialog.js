@@ -6,8 +6,10 @@ import Radium from 'radium';
 import Paper from '../paper/Paper';
 import BaseDialog from './BaseDialog';
 import RaisedButton from '../button/RaisedButton'
-import { View, RenderInBody } from 'react-blueprint';
 import { colors } from '../../utils/colors';
+import View from '../view/View';
+import RenderInBody from '../render-in-body/RenderInBody';
+
 
 @Radium
 @BaseDialog

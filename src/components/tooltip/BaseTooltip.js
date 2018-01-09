@@ -14,11 +14,11 @@ export const BaseTooltip = (ComposedComponent) => {
 	return class extends Component {
 
 		static propTypes = {
-			vPosition: React.PropTypes.oneOf(['top','bottom', 'center']),     	// Horizontal positioning of the Tooltip - StickyTooltips do not support 'center'
-			hPosition: React.PropTypes.oneOf(['left','right', 'center']),     	// Vertical positioning of the Tooltip - StickyTooltips do not support 'center'
-			placeholder: React.PropTypes.any,                       			// The tooltip content
-			tooltipStyles: React.PropTypes.object,                  			// Use this to pass styles to the actual Tooltip
-			disabled: React.PropTypes.bool 										// Disables the tooltip but still renders the children
+			vPosition: PropTypes.oneOf(['top','bottom', 'center']),     	// Horizontal positioning of the Tooltip - StickyTooltips do not support 'center'
+			hPosition: PropTypes.oneOf(['left','right', 'center']),     	// Vertical positioning of the Tooltip - StickyTooltips do not support 'center'
+			placeholder: PropTypes.any,                       			// The tooltip content
+			tooltipStyles: PropTypes.object,                  			// Use this to pass styles to the actual Tooltip
+			disabled: PropTypes.bool 										// Disables the tooltip but still renders the children
 		};
 
 		static defaultProps = {

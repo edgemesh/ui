@@ -18,6 +18,8 @@ export Tabs from './components/tabs/Tabs';
 export Tab from './components/tabs/Tab';
 export Autocomplete from './components/autocomplete/Autocomplete';
 export Select from './components/select/Select';
+export View from './components/view/View';
+export RenderInBody from './components/render-in-body/RenderInBody';
 
 // Utils
 export keyCode from './utils/keyCode';

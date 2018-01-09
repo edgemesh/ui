@@ -10,10 +10,10 @@ import Radio from './Radio';
 export default class RadioGroup extends Component {
 
 	static propTypes = {
-		value: React.PropTypes.string,
-		defaultValue: React.PropTypes.string,
-		labelPosition: React.PropTypes.oneOf(['left', 'right']),
-		onChange: React.PropTypes.func
+		value: PropTypes.string,
+		defaultValue: PropTypes.string,
+		labelPosition: PropTypes.oneOf(['left', 'right']),
+		onChange: PropTypes.func
 	};
 
 	switchedRadios = 0;

@@ -2,13 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Radium from 'radium';
 
-// React Blue Print
-import { View } from 'react-blueprint';
-
 // Coomponents
 import Paper from '../paper/Paper';
 import BaseSwitch from './BaseSwitch';
 import TouchRipple from '../ripple/TouchRipple';
+import View from '../view/View';
 
 // Utilities
 import { Icon } from '../../';

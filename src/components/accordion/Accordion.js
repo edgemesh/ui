@@ -14,20 +14,20 @@ export default class Accordion extends Component {
 		expandDirection: PropTypes.oneOf(['up', 'down']),
 		expandIsOverlay: PropTypes.bool, // If true expand content will be position: 'absolute'
 		expandContent: PropTypes.any,
-		expandContentStyle: React.PropTypes.oneOfType([
-			React.PropTypes.object,
-			React.PropTypes.array
+		expandContentStyle: PropTypes.oneOfType([
+			PropTypes.object,
+			PropTypes.array
 		]),
-		expandContentContainerStyle: React.PropTypes.oneOfType([
-			React.PropTypes.object,
-			React.PropTypes.array
+		expandContentContainerStyle: PropTypes.oneOfType([
+			PropTypes.object,
+			PropTypes.array
 		]),
 		expandedOnMount: PropTypes.bool,
 		transitionSpeed: PropTypes.number,
 		disabled: PropTypes.bool,
-		disabledStyle: React.PropTypes.oneOfType([
-			React.PropTypes.object,
-			React.PropTypes.array
+		disabledStyle: PropTypes.oneOfType([
+			PropTypes.object,
+			PropTypes.array
 		]),
 		// Events
 		onExpandOpen: PropTypes.func,

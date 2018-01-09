@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Radium, { Style } from 'radium';
-import { View } from 'react-blueprint';
 import { colors } from '../../utils/colors';
 import Paper from '../paper/Paper';
 import RaisedButton from '../button/RaisedButton'
 import TransitionGroup from 'react-addons-css-transition-group';
 import Transitions from '../../utils/transitions';
 import colorTools from '../../utils/colorTools';
+import View from '../view/View';
 
 const transitionSpeed = 300;
 

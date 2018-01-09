@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View } from 'react-blueprint';
 import Radium from 'radium';
 import { colors } from '../../utils/colors';
 import Icon from '../icon/Icon';
+import View from '../view/View';
 
 @Radium
 export default class Tab extends Component {
