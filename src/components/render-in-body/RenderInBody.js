@@ -25,7 +25,7 @@ class RenderInBody extends Component {
 
 		render() {
 			// Render a placeholder
-			return React.DOM.div();
+			return (<div/>);
 		}
 
 
@@ -58,7 +58,7 @@ const decorateRenderInBody = (ComposedComponent, options = {}) => {
 
 		render() {
 			// Render a placeholder
-			return React.DOM.div();
+			return (<div/>);
 		}
 
 	}
