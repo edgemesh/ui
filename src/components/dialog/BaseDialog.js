@@ -15,7 +15,7 @@ export const BaseDialog = (ComposedComponent, ref) => {
 
 		static displayName = 'BaseDialog';
 
-		static PropTypes = {
+		static propTypes = {
 			// Configuration
 			openOnMount: PropTypes.bool,
 			renderInBody: PropTypes.bool,

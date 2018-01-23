@@ -83,7 +83,7 @@ export default class RaisedButton extends Component {
 					<TouchRipple ref="ripple" rippleColor={rippleColor}>
 						<button
 							{...buttonProps}
-							className={!disabled && `emui-button-hover-${id}`}
+							className={disabled ? '' : `emui-button-hover-${id}`}
 							onMouseDown={this._handleMouseDown.bind(this)}
 							onMouseUp={this._handleMouseUp.bind(this)}
 							onMouseLeave={this._handleMouseUp.bind(this)}
