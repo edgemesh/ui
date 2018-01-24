@@ -29,6 +29,7 @@ export default class Accordion extends Component {
 			PropTypes.object,
 			PropTypes.array
 		]),
+		overflow: PropTypes.bool, // If set to true, will enable overflow for expanded content
 		// Events
 		onExpandOpen: PropTypes.func,
 		onExpandClose: PropTypes.func
@@ -39,11 +40,13 @@ export default class Accordion extends Component {
 		expandIsOverlay: false,
 		expandedOnMount: false,
 		transitionSpeed: 300,
-		disabled: false
+		disabled: false,
+		overflow: false
 	};
 
 	state = {
-		expanded: this.props.expandedOnMount
+		expanded: this.props.expandedOnMount,
+		overflow: this.props.overflow ? this.props.expandedOnMount : this.props.overflow
 	};
 
 	componentDidMount() {
@@ -90,7 +93,7 @@ export default class Accordion extends Component {
 	/////////////////////
 
 	expandContent(open) {
-		let { transitionSpeed } = this.props;
+		let { transitionSpeed, overflow } = this.props;
 		let { expanded } = this.state;
 
 		let container = ReactDOM.findDOMNode(this.refs.expandContentContainer),
@@ -109,12 +112,20 @@ export default class Accordion extends Component {
 
 		container.style.height = open ? endHeight : '0px';
 
+			const _this = this;
 			// When transition ends, reset transition property to empty and set height property to auto
 			container.addEventListener('transitionend', function transitionEnd(event) {
 				if (event.propertyName == 'height') {
 					container.style.transition = '';
 					container.style.height = open ? 'auto' : '0px';
 					container.removeEventListener('transitionend', transitionEnd, false);
+				}
+
+				// Handle overflow scenario
+				if (overflow && open) {
+					_this.setState({
+						overflow: open
+					});
 				}
 			}, false);
 
@@ -123,7 +134,8 @@ export default class Accordion extends Component {
 
 		// Change state
 		this.setState({
-			expanded: open
+			expanded: open,
+			overflow: false
 		});
 	}
 
@@ -161,6 +173,8 @@ export default class Accordion extends Component {
 			expandIsOverlay
 		} = this.props;
 
+		const {overflow} = this.state;
+
 		let contentContainerStyles;
 
 		if (expandIsOverlay) {
@@ -172,9 +186,17 @@ export default class Accordion extends Component {
 			}
 		};
 
+
 		if (expandContent) {
 			return (
-				<div ref="expandContentContainer" style={[styles.expandContentContainer, contentContainerStyles, expandContentContainerStyle]}>
+				<div
+					ref="expandContentContainer"
+					style={[
+						styles.expandContentContainer,
+						contentContainerStyles,
+						expandContentContainerStyle,
+						overflow && styles.overflow
+					]}>
 					<div style={expandContentStyle}>
 						{expandContent}
 					</div>
@@ -194,5 +216,8 @@ const styles = {
 		overflow: 'hidden',
 		height: 0,
 		position: 'relative'
+	},
+	overflow: {
+		overflow: 'visible'
 	}
 }
