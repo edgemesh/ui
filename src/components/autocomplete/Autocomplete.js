@@ -47,7 +47,7 @@ export default class Autocomplete extends Component {
 	};
 
 	state = {
-		visible: this._filterOptions(this.props.entryValue, this.props.options),
+		visible: this.props.options,
 		entryValue: this.props.defaultLabel ?
 			this.props.defaultLabel : this.props.defaultValue ?
 			this._filterOptions(this.props.defaultValue, this.props.options, true)[0].label : '',

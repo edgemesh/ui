@@ -38,11 +38,10 @@ export default class AutocompleteSelector extends Component {
 		selectionIndex: null
 	};
 
-	componentDidUpdate(prevProps) {
+	componentWillReceiveProps(nextProps) {
 		let { open } = this.props;
-
-		if ( prevProps.open !== open ) {
-			this.refs.accordion.expandContent(open);
+		if ( nextProps.open !== open ) {
+			this.accordion.expandContent(nextProps.open);
 			// console.log('props: ',open,'prevProps: ', prevProps.open)
 		}
 	}
@@ -63,7 +62,6 @@ export default class AutocompleteSelector extends Component {
 		let { selectionIndex } = this.state;
 
 		const isUp = expandDirection === 'up';
-
 		options = options.map((option, i)=>{
 			return(
 				<div
@@ -102,7 +100,9 @@ export default class AutocompleteSelector extends Component {
 					}
 				}} />
 				<Accordion
-					ref="accordion"
+					ref={ ref => {
+						this.accordion = ref;
+					}}
 					expandContent={options}
 					expandDirection={expandDirection}
 					expandContentStyle={[styles.selector, selectorStyles]}
